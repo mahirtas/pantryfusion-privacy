@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PantryFusion – Daten löschen / Delete Data</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.6; }
+    h1 { color: #FF6B6B; border-bottom: 2px solid #FF6B6B; padding-bottom: 8px; }
+    h2 { color: #FF6B6B; margin-top: 32px; }
+    hr { border: none; border-top: 1px solid #eee; margin: 40px 0; }
+    .lang-switch { text-align: right; margin-bottom: 20px; font-size: 14px; }
+    a { color: #FF6B6B; }
+    ol li { margin-bottom: 8px; }
+    .box { background: #FFF4F4; border-left: 4px solid #FF6B6B; padding: 12px 16px; margin: 16px 0; border-radius: 4px; }
+  </style>
+</head>
+<body>
+<div class="lang-switch">
+  <a href="#de">Deutsch</a> | <a href="#en">English</a> |
+  <a href="https://mahirtas.github.io/pantryfusion-privacy/">Datenschutz / Privacy</a> |
+  <a href="https://mahirtas.github.io/pantryfusion-privacy/support.html">Support</a>
+</div>
+
+<section id="de">
+<h1>Daten löschen – PantryFusion</h1>
+<p><strong>Stand:</strong> Mai 2026</p>
+
+<p>Auf dieser Seite erfährst du, wie du alle deine in PantryFusion gespeicherten Daten löschen kannst – sowohl lokal auf deinem Gerät als auch auf unseren Servern.</p>
+
+<h2>1. Löschung direkt in der App (empfohlen)</h2>
+<ol>
+  <li>Öffne die <strong>PantryFusion</strong>-App.</li>
+  <li>Tippe unten auf <strong>Einstellungen</strong>.</li>
+  <li>Scrolle zum Abschnitt <strong>Rechtliches</strong>.</li>
+  <li>Tippe auf <strong>„Meine Daten löschen"</strong>.</li>
+  <li>Bestätige in zwei aufeinanderfolgenden Dialogen, dass du die Löschung wirklich durchführen möchtest.</li>
+</ol>
+<div class="box">Die Löschung erfolgt sofort und ist unwiderruflich. Du kannst die App danach weiter nutzen – ein neues anonymes Konto wird beim nächsten Start automatisch erstellt.</div>
+
+<h2>2. Löschung per E-Mail (falls App deinstalliert)</h2>
+<p>Falls du die App bereits deinstalliert hast, schreibe uns an <a href="mailto:mahir.tas.mt@gmail.com?subject=Datenl%C3%B6schung%20PantryFusion">mahir.tas.mt@gmail.com</a> mit dem Betreff <strong>„Datenlöschung PantryFusion"</strong>. Wir löschen deine Server-Daten innerhalb von 7 Tagen und bestätigen die Löschung per E-Mail.</p>
+<p>Bitte gib nach Möglichkeit deine anonyme Benutzer-ID an (zu finden in der App unter <em>Einstellungen → Über</em>), damit wir den richtigen Datensatz zuordnen können.</p>
+
+<h2>3. Welche Daten werden gelöscht?</h2>
+<ul>
+  <li><strong>Server-Daten (Google Firebase):</strong>
+    <ul>
+      <li>Anonyme Benutzer-ID (Firebase Auth)</li>
+      <li>PRO-Status und Tageskontingent (Firestore: <code>users/{uid}</code>, <code>userQuota/{uid}</code>)</li>
+    </ul>
+  </li>
+  <li><strong>Lokale Daten (auf deinem Gerät):</strong>
+    <ul>
+      <li>Rezept-Verlauf, Pantry, Einkaufsliste, Essensplan</li>
+      <li>Familienprofile, Allergien, Geräte-Einstellungen</li>
+      <li>Foto-Cache und gespeicherte Bilder</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>4. Welche Daten werden aufbewahrt?</h2>
+<ul>
+  <li><strong>Anonymisierter Rezept-Cache:</strong> Anonymisierte Rezept-Anfragen werden für maximal <strong>30 Tage</strong> in Firebase Firestore zwischengespeichert, um Kosten zu reduzieren. Diese enthalten keinerlei personenbezogene Daten und können dir nicht zugeordnet werden.</li>
+  <li><strong>Abonnement-Daten:</strong> Dein Abo bleibt mit deinem Apple-ID- bzw. Google-Play-Konto verknüpft und wird von Apple/Google verwaltet. Wir haben darauf keinen Zugriff. Die Verwaltung erfolgt direkt im App Store bzw. Google Play.</li>
+</ul>
+
+<h2>5. Kontakt</h2>
+<p>Bei Fragen zur Datenlöschung: <a href="mailto:mahir.tas.mt@gmail.com">mahir.tas.mt@gmail.com</a></p>
+</section>
+
+<hr />
+
+<section id="en">
+<h1>Delete Data – PantryFusion</h1>
+<p><strong>Last updated:</strong> May 2026</p>
+
+<p>This page explains how to delete all data stored by PantryFusion – both locally on your device and on our servers.</p>
+
+<h2>1. Delete directly in the app (recommended)</h2>
+<ol>
+  <li>Open the <strong>PantryFusion</strong> app.</li>
+  <li>Tap <strong>Settings</strong> at the bottom.</li>
+  <li>Scroll to the <strong>Legal</strong> section.</li>
+  <li>Tap <strong>"Delete my data"</strong>.</li>
+  <li>Confirm two consecutive dialogs to proceed with permanent deletion.</li>
+</ol>
+<div class="box">Deletion is immediate and irreversible. You can continue using the app afterwards – a new anonymous account is automatically created on the next launch.</div>
+
+<h2>2. Delete via email (if the app is uninstalled)</h2>
+<p>If you have already uninstalled the app, email us at <a href="mailto:mahir.tas.mt@gmail.com?subject=Data%20Deletion%20PantryFusion">mahir.tas.mt@gmail.com</a> with the subject <strong>"Data Deletion PantryFusion"</strong>. We will delete your server-side data within 7 days and confirm by email.</p>
+<p>If possible, include your anonymous user ID (found in the app under <em>Settings → About</em>) so we can identify the correct record.</p>
+
+<h2>3. What data will be deleted?</h2>
+<ul>
+  <li><strong>Server data (Google Firebase):</strong>
+    <ul>
+      <li>Anonymous user ID (Firebase Auth)</li>
+      <li>PRO status and daily quota (Firestore: <code>users/{uid}</code>, <code>userQuota/{uid}</code>)</li>
+    </ul>
+  </li>
+  <li><strong>Local data (on your device):</strong>
+    <ul>
+      <li>Recipe history, pantry, shopping list, meal plan</li>
+      <li>Family profiles, allergies, device settings</li>
+      <li>Photo cache and stored images</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>4. What data is retained?</h2>
+<ul>
+  <li><strong>Anonymized recipe cache:</strong> Anonymized recipe requests are cached in Firebase Firestore for a maximum of <strong>30 days</strong> to reduce costs. These contain no personal data and cannot be linked back to you.</li>
+  <li><strong>Subscription data:</strong> Your subscription stays linked to your Apple ID or Google Play account and is managed by Apple/Google. We have no access to it. Manage it directly in the App Store or Google Play.</li>
+</ul>
+
+<h2>5. Contact</h2>
+<p>For questions about data deletion: <a href="mailto:mahir.tas.mt@gmail.com">mahir.tas.mt@gmail.com</a></p>
+</section>
+
+</body>
+</html>
