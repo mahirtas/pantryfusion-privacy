@@ -3,16 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="PantryFusion — KI-gestützte Rezept-App. Aus deinen Vorräten werden in Sekunden genussvolle Rezepte. In 15 Sprachen verfügbar.">
+    <meta name="description" content="PantryFusion Datenschutzerklärung — wie wir mit deinen Daten umgehen.">
     <meta name="theme-color" content="#FF6B6B">
-    <title>PantryFusion — Aus Vorrat wird Rezept</title>
-
-    <link rel="apple-touch-icon" href="https://apps.apple.com/favicon.ico">
-
-    <meta property="og:title" content="PantryFusion — Aus Vorrat wird Rezept">
-    <meta property="og:description" content="KI-gestützte Rezept-App. Reduziere Lebensmittelverschwendung, plane deine Woche, koche besser.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://mahirtas.github.io/">
+    <title>Datenschutz · PantryFusion</title>
 
     <style>
         :root {
@@ -26,22 +19,22 @@
             --gray-200: #E4E4E7;
             --gray-500: #71717A;
             --gray-700: #3F3F46;
-            --gradient-hero: linear-gradient(135deg, #FF6B6B 0%, #FFE66D 100%);
             --gradient-soft: linear-gradient(180deg, #FFF6F6 0%, #FFFFFF 100%);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
         [hidden] { display: none !important; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
             color: var(--dark);
-            line-height: 1.6;
+            line-height: 1.65;
             background: var(--light);
         }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; }
 
         /* Header */
         header {
@@ -66,9 +59,7 @@
 
         .brand-icon { font-size: 1.6rem; line-height: 1; }
 
-        .header-right { display: flex; align-items: center; gap: 1.2rem; }
-
-        nav ul { list-style: none; display: flex; gap: 1.8rem; }
+        nav ul { list-style: none; display: flex; gap: 1.5rem; }
 
         nav a {
             color: var(--gray-700); text-decoration: none;
@@ -81,6 +72,10 @@
         @media (max-width: 640px) { nav { display: none; } }
 
         /* Lang Toggle */
+        .header-right {
+            display: flex; align-items: center; gap: 1.2rem;
+        }
+
         .lang-toggle {
             display: inline-flex;
             background: var(--gray-100);
@@ -105,12 +100,14 @@
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
         }
 
-        .lang-toggle button:hover:not(.active) { color: var(--gray-700); }
+        .lang-toggle button:hover:not(.active) {
+            color: var(--gray-700);
+        }
 
         /* Hero */
         .hero {
             background: var(--gradient-soft);
-            padding: 5rem 0 6rem;
+            padding: 4rem 0 3rem;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -120,233 +117,123 @@
             content: '';
             position: absolute;
             top: -50%; right: -10%;
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(255, 230, 109, 0.3) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -30%; left: -10%;
             width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(78, 205, 196, 0.2) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 230, 109, 0.25) 0%, transparent 70%);
             pointer-events: none;
         }
 
         .hero-content { position: relative; z-index: 1; }
 
+        .hero-emoji { font-size: 3.5rem; margin-bottom: 1rem; }
+
         .hero h1 {
-            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 800;
             letter-spacing: -0.02em;
-            line-height: 1.1;
-            margin-bottom: 1.2rem;
-            background: var(--gradient-hero);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero .tagline {
-            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-            color: var(--gray-700);
-            margin-bottom: 2.5rem;
-            max-width: 680px;
-            margin-left: auto; margin-right: auto;
-        }
-
-        .hero-emoji {
-            font-size: 4rem;
-            display: inline-block;
-            margin-bottom: 1.5rem;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .cta-group {
-            display: flex; gap: 1rem;
-            justify-content: center; flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .app-store-badge {
-            display: inline-flex; align-items: center;
-            background: var(--dark); color: white;
-            padding: 0.9rem 1.6rem;
-            border-radius: 12px;
-            text-decoration: none; font-weight: 600;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .app-store-badge:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .app-store-badge .apple-logo {
-            font-size: 1.6rem; margin-right: 0.7rem; line-height: 1;
-        }
-
-        .app-store-badge .text-group {
-            display: flex; flex-direction: column; line-height: 1.1;
-        }
-
-        .app-store-badge .small { font-size: 0.7rem; font-weight: 400; opacity: 0.85; }
-        .app-store-badge .big { font-size: 1.1rem; font-weight: 600; }
-
-        .android-coming {
-            display: inline-flex; align-items: center;
-            background: var(--gray-100); color: var(--gray-500);
-            padding: 0.9rem 1.6rem;
-            border-radius: 12px;
-            font-weight: 500; cursor: not-allowed;
-            border: 2px dashed var(--gray-500);
-        }
-
-        .android-coming-emoji { margin-right: 0.7rem; font-size: 1.4rem; }
-
-        /* Features */
-        .features { padding: 5rem 0; }
-
-        .section-title {
-            text-align: center;
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            font-weight: 800;
+            line-height: 1.15;
             margin-bottom: 0.8rem;
             color: var(--dark);
         }
 
-        .section-subtitle {
+        .hero p {
+            color: var(--gray-500);
+            font-size: 1.05rem;
+        }
+
+        /* Language Switcher */
+        .lang-switch {
+            display: flex; gap: 0.5rem; justify-content: center;
+            margin: 2.5rem 0 2rem;
+        }
+
+        .lang-pill {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: white;
+            border: 1.5px solid var(--gray-200);
+            border-radius: 999px;
+            padding: 0.55rem 1.2rem;
+            font-size: 0.95rem; font-weight: 600;
+            color: var(--gray-700);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .lang-pill:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-1px);
+        }
+
+        /* Content */
+        .content { padding: 1rem 0 4rem; }
+
+        .meta-line {
             text-align: center;
             color: var(--gray-500);
-            font-size: 1.1rem;
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto; margin-right: auto;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
         }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
+        .meta-line strong { color: var(--gray-700); }
 
-        .feature-card {
-            background: white;
-            border: 1px solid rgba(0, 0, 0, 0.06);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-        }
+        section.legal { margin-bottom: 3.5rem; }
 
-        .feature-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
-            border-color: rgba(255, 107, 107, 0.2);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            display: inline-block;
-        }
-
-        .feature-card h3 {
-            font-size: 1.15rem; font-weight: 700;
-            margin-bottom: 0.5rem; color: var(--dark);
-        }
-
-        .feature-card p {
-            color: var(--gray-500); font-size: 0.95rem;
-        }
-
-        /* Languages */
-        .languages {
-            background: var(--gradient-soft);
-            padding: 4rem 0; text-align: center;
-        }
-
-        .lang-grid {
-            display: flex; flex-wrap: wrap;
-            gap: 0.6rem; justify-content: center;
-            margin-top: 2rem;
-            max-width: 800px;
-            margin-left: auto; margin-right: auto;
-        }
-
-        .lang-chip {
-            background: white;
-            border: 1px solid rgba(0, 0, 0, 0.06);
-            border-radius: 999px;
-            padding: 0.5rem 1.1rem;
-            font-size: 0.95rem; font-weight: 500;
-            color: var(--gray-700);
-            display: inline-flex; align-items: center; gap: 0.4rem;
-        }
-
-        .lang-chip-flag { font-size: 1.1rem; line-height: 1; }
-
-        /* Pricing */
-        .pricing { padding: 5rem 0; text-align: center; }
-
-        .pricing-card {
-            display: inline-block;
-            background: white;
-            border: 2px solid var(--primary);
-            border-radius: 20px;
-            padding: 2.5rem 3rem;
-            margin-top: 2rem;
-            box-shadow: 0 12px 32px rgba(255, 107, 107, 0.15);
-            text-align: left;
-            max-width: 380px;
-        }
-
-        .pricing-badge {
-            display: inline-block;
-            background: var(--tertiary);
+        section.legal h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
             color: var(--dark);
-            padding: 0.3rem 0.8rem;
-            border-radius: 999px;
-            font-size: 0.75rem; font-weight: 700;
-            margin-bottom: 1rem;
-            letter-spacing: 0.03em;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
         }
 
-        .pricing-card h3 {
-            font-size: 1.5rem; font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
+        section.legal h2.first { margin-top: 0; }
 
-        .pricing-card .price {
-            font-size: 2.5rem; font-weight: 800;
-            color: var(--primary); margin: 0.5rem 0;
-        }
-
-        .pricing-card .price-note {
-            color: var(--gray-500); font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .pricing-card ul {
-            list-style: none; margin-top: 1.5rem;
-        }
-
-        .pricing-card li {
-            padding: 0.4rem 0;
+        section.legal p,
+        section.legal ul {
             color: var(--gray-700);
-            display: flex; align-items: center;
+            margin-bottom: 1rem;
+            font-size: 1rem;
         }
 
-        .pricing-card li::before {
-            content: '✓';
-            color: var(--secondary); font-weight: 700;
-            margin-right: 0.6rem; font-size: 1.1rem;
+        section.legal ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        section.legal ul li {
+            padding: 0.5rem 0 0.5rem 1.5rem;
+            position: relative;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        section.legal ul li:last-child { border-bottom: none; }
+
+        section.legal ul li::before {
+            content: '•';
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: 0.3rem;
+            font-size: 1.3rem;
+            line-height: 1;
+        }
+
+        section.legal a {
+            color: var(--primary);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-thickness: 1.5px;
+        }
+
+        section.legal a:hover { color: var(--dark); }
+
+        .divider {
+            border: none;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--gray-200), transparent);
+            margin: 4rem 0;
         }
 
         /* Footer */
@@ -354,7 +241,6 @@
             background: var(--dark);
             color: rgba(255, 255, 255, 0.7);
             padding: 3rem 0 2rem;
-            margin-top: 2rem;
         }
 
         .footer-inner {
@@ -362,6 +248,9 @@
             grid-template-columns: 2fr 1fr 1fr;
             gap: 2rem;
             margin-bottom: 2rem;
+            max-width: 1100px;
+            margin-left: auto; margin-right: auto;
+            padding: 0 1.5rem;
         }
 
         @media (max-width: 640px) {
@@ -382,19 +271,25 @@
 
         footer a:hover { color: var(--primary); }
 
+        .footer-brand p {
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 320px;
+        }
+
+        .footer-brand .brand { color: white; }
+
         .footer-bottom {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 1.5rem;
             text-align: center;
             font-size: 0.85rem;
             color: rgba(255, 255, 255, 0.5);
-        }
-
-        .footer-brand p {
-            margin-top: 0.8rem;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-            max-width: 320px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
         }
     </style>
 </head>
@@ -402,17 +297,16 @@
 
 <header>
     <div class="header-inner">
-        <a href="#" class="brand">
+        <a href="https://mahirtas.github.io/" class="brand">
             <span class="brand-icon">🍳</span>
             <span>PantryFusion</span>
         </a>
         <div class="header-right">
             <nav>
                 <ul>
-                    <li><a href="#features" data-i18n="nav-features">Funktionen</a></li>
-                    <li><a href="#languages" data-i18n="nav-languages">Sprachen</a></li>
-                    <li><a href="#pricing" data-i18n="nav-pricing">Preis</a></li>
-                    <li><a href="pantryfusion-privacy/" data-i18n="nav-privacy">Datenschutz</a></li>
+                    <li><a href="https://mahirtas.github.io/" data-i18n="nav-home">Startseite</a></li>
+                    <li><a href="support.html" data-i18n="nav-support">Support</a></li>
+                    <li><a href="https://apps.apple.com/app/pantryfusion/id6761635772">App Store</a></li>
                 </ul>
             </nav>
             <div class="lang-toggle" role="group" aria-label="Language">
@@ -425,231 +319,127 @@
 
 <section class="hero">
     <div class="container hero-content">
-        <div class="hero-emoji">🍅🥕🥦</div>
-        <h1 lang="de">Aus Vorrat wird Rezept.</h1>
-        <h1 lang="en">From pantry to recipe.</h1>
-        <p class="tagline" lang="de">
-            PantryFusion verwandelt deine Zutaten in Sekunden in genussvolle Rezepte —
-            persönlich angepasst, in 15 Sprachen, mit weniger Lebensmittelverschwendung.
-        </p>
-        <p class="tagline" lang="en">
-            PantryFusion turns your ingredients into delicious recipes in seconds —
-            personalized, available in 15 languages, with less food waste.
-        </p>
-        <div class="cta-group">
-            <a href="https://apps.apple.com/app/pantryfusion/id6761635772" class="app-store-badge">
-                <span class="apple-logo">&#63743;</span>
-                <span class="text-group">
-                    <span class="small" lang="de">Laden im</span>
-                    <span class="small" lang="en">Download on the</span>
-                    <span class="big">App Store</span>
-                </span>
-            </a>
-            <span class="android-coming">
-                <span class="android-coming-emoji">🤖</span>
-                <span lang="de">Android folgt bald</span>
-                <span lang="en">Android coming soon</span>
-            </span>
-        </div>
+        <div class="hero-emoji">🔒</div>
+        <h1 lang="de">Datenschutz</h1>
+        <h1 lang="en">Privacy</h1>
+        <p lang="de">Wie wir mit deinen Daten umgehen — transparent und verständlich.</p>
+        <p lang="en">How we handle your data — transparent and clear.</p>
     </div>
 </section>
 
-<section class="features" id="features">
+<div class="content">
     <div class="container">
-        <h2 class="section-title" lang="de">Alles für entspanntes Kochen</h2>
-        <h2 class="section-title" lang="en">Everything for relaxed cooking</h2>
-        <p class="section-subtitle" lang="de">
-            Smart, persönlich, mehrsprachig — PantryFusion macht aus deiner Küche eine kleine Welt.
-        </p>
-        <p class="section-subtitle" lang="en">
-            Smart, personal, multilingual — PantryFusion turns your kitchen into a small world.
-        </p>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🤖</div>
-                <h3 lang="de">KI-Rezepte aus Vorräten</h3>
-                <h3 lang="en">AI recipes from your pantry</h3>
-                <p lang="de">Sag uns was du hast — wir generieren passende Rezepte zugeschnitten auf Region, Diät und Saison.</p>
-                <p lang="en">Tell us what you have — we generate matching recipes tailored to region, diet, and season.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🥫</div>
-                <h3 lang="de">Smart Pantry Tracking</h3>
-                <h3 lang="en">Smart pantry tracking</h3>
-                <p lang="de">Behalte den Überblick über Ablaufdaten und reduziere Lebensmittelverschwendung Tag für Tag.</p>
-                <p lang="en">Keep track of expiration dates and reduce food waste day by day.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📅</div>
-                <h3 lang="de">Wochenplaner</h3>
-                <h3 lang="en">Weekly planner</h3>
-                <p lang="de">Plane Frühstück, Mittag- und Abendessen für 7 Tage — drag & drop, vollständig flexibel.</p>
-                <p lang="en">Plan breakfast, lunch and dinner for 7 days — drag &amp; drop, fully flexible.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🛒</div>
-                <h3 lang="de">Smart Einkaufsliste</h3>
-                <h3 lang="en">Smart shopping list</h3>
-                <p lang="de">Auto-generiert aus deinem Wochenplan — mit KI-basierter Preisschätzung, abhakbaren Items und Gruppierung nach Kategorien.</p>
-                <p lang="en">Auto-generated from your weekly plan — with AI-based price estimates, checkable items, and category grouping.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">👨‍👩‍👧‍👦</div>
-                <h3 lang="de">Familienprofile &amp; Allergien</h3>
-                <h3 lang="en">Family profiles &amp; allergies</h3>
-                <p lang="de">Mehrere Profile mit individuellen Vorlieben, Allergien und Ernährungsformen — alle auf einen Blick.</p>
-                <p lang="en">Multiple profiles with individual preferences, allergies and dietary needs — all at a glance.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🌍</div>
-                <h3 lang="de">Kulinarische Weltreise</h3>
-                <h3 lang="en">Culinary world tour</h3>
-                <p lang="de">Entdecke 14 Küchen-Regionen — von Mittelmeer bis Südostasien — direkt aus deiner eigenen Küche.</p>
-                <p lang="en">Discover 14 cuisine regions — from the Mediterranean to Southeast Asia — right from your own kitchen.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h3 lang="de">Nährwert-Tracking</h3>
-                <h3 lang="en">Nutrition tracking</h3>
-                <p lang="de">Kalorien, Eiweiß, Kohlenhydrate, Fett — automatisch erfasst, mit eigenen Tageszielen.</p>
-                <p lang="en">Calories, protein, carbs, fat — automatically tracked, with your own daily goals.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🌦️</div>
-                <h3 lang="de">Wetter-Küche</h3>
-                <h3 lang="en">Weather-based recipes</h3>
-                <p lang="de">Heißer Tag? Erfrischende Bowls. Kalter Regen? Wärmende Suppen. PantryFusion passt Vorschläge an dein Wetter an.</p>
-                <p lang="en">Hot day? Refreshing bowls. Cold rain? Warming soups. PantryFusion matches recipe suggestions to your weather.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📸</div>
-                <h3 lang="de">Vorrats-Scanner</h3>
-                <h3 lang="en">Pantry scanner</h3>
-                <p lang="de">Mach ein Foto deiner Vorratskammer — die KI erkennt alle Lebensmittel automatisch und legt sie für dich an.</p>
-                <p lang="en">Snap a photo of your pantry — AI automatically detects all items and adds them to your inventory for you.</p>
-            </div>
-        </div>
-    </div>
-</section>
 
-<section class="languages" id="languages">
-    <div class="container">
-        <h2 class="section-title" lang="de">In 15 Sprachen zuhause</h2>
-        <h2 class="section-title" lang="en">At home in 15 languages</h2>
-        <p class="section-subtitle" lang="de">
-            PantryFusion spricht deine Sprache — und passt Rezepte automatisch an deine Region an.
-        </p>
-        <p class="section-subtitle" lang="en">
-            PantryFusion speaks your language — and adapts recipes to your region automatically.
-        </p>
-        <div class="lang-grid">
-            <span class="lang-chip"><span class="lang-chip-flag">🇩🇪</span> Deutsch</span>
-            <span class="lang-chip"><span class="lang-chip-flag">🇬🇧</span> English</span>
-            <span class="lang-chip"><span class="lang-chip-flag">🇪🇸</span> Español</span>
-            <span class="lang-chip"><span class="lang-chip-flag">🇫🇷</span> Français</span>
-            <span class="lang-chip"><span class="lang-chip-flag">🇮🇹</span> Italiano</span>
-            <span class="lang-chip"><span class="lang-chip-flag">🇵🇹</span> Português</span>
-            <span class="lang-chip"><span class="lang-chip-flag">🇹🇷</span> Türkçe</span>
-            <span class="lang-chip"><span class="lang-chip-flag">🇷🇺</span> Русский</span>
-            <span class="lang-chip"><span class="lang-chip-flag">🇸🇦</span> العربية</span>
-            <span class="lang-chip"><span class="lang-chip-flag">🇮🇳</span> हिन्दी</span>
-            <span class="lang-chip"><span class="lang-chip-flag">🇨🇳</span> 中文</span>
-            <span class="lang-chip"><span class="lang-chip-flag">🇯🇵</span> 日本語</span>
-            <span class="lang-chip"><span class="lang-chip-flag">🇰🇷</span> 한국어</span>
-            <span class="lang-chip"><span class="lang-chip-flag">🇮🇩</span> Bahasa Indonesia</span>
-            <span class="lang-chip"><span class="lang-chip-flag">🇻🇳</span> Tiếng Việt</span>
-        </div>
-    </div>
-</section>
+        <!-- DEUTSCH -->
+        <section id="de" class="legal" lang="de">
+            <p class="meta-line"><strong>Stand:</strong> April 2026 · Verantwortlich: Mahir Tas</p>
 
-<section class="pricing" id="pricing">
-    <div class="container">
-        <h2 class="section-title" lang="de">Kostenlos starten</h2>
-        <h2 class="section-title" lang="en">Start for free</h2>
-        <p class="section-subtitle" lang="de">
-            Lerne die App kennen — kein Login, keine Verpflichtungen.
-        </p>
-        <p class="section-subtitle" lang="en">
-            Try the app — no login, no obligations.
-        </p>
-        <div class="pricing-card">
-            <span class="pricing-badge" lang="de">7 Tage gratis testen</span>
-            <span class="pricing-badge" lang="en">7-day free trial</span>
-            <h3>Premium</h3>
-            <div class="price">
-                <span lang="de">4,99 €<span style="font-size: 1rem; font-weight: 400; color: var(--gray-500);">/Monat</span></span>
-                <span lang="en">€4.99<span style="font-size: 1rem; font-weight: 400; color: var(--gray-500);">/month</span></span>
-            </div>
-            <p class="price-note" lang="de">Oder 29,99 €/Jahr (= 2,49 €/Monat)</p>
-            <p class="price-note" lang="en">Or €29.99/year (= €2.49/month)</p>
+            <h2 class="first">1. Verantwortlicher</h2>
+            <p>Mahir Tas<br>E-Mail: <a href="mailto:mahir.tas.mt@gmail.com">mahir.tas.mt@gmail.com</a></p>
+
+            <h2>2. Welche Daten wir erheben</h2>
             <ul>
-                <li lang="de">Unbegrenzte Rezepte</li>
-                <li lang="en">Unlimited recipes</li>
-                <li lang="de">Rezept-Import per Foto &amp; Link</li>
-                <li lang="en">Recipe import via photo &amp; link</li>
-                <li lang="de">Restaurant-Gerichte nachkochen</li>
-                <li lang="en">Recreate restaurant dishes</li>
-                <li lang="de">KI-Gäste-Menü-Planer</li>
-                <li lang="en">AI guest menu planner</li>
-                <li lang="de">Werbefrei</li>
-                <li lang="en">Ad-free</li>
-                <li lang="de">Jederzeit kündbar</li>
-                <li lang="en">Cancel anytime</li>
+                <li><strong>Kamera &amp; Fotos:</strong> Die App kann auf deine Kamera und Fotobibliothek zugreifen, um Bilder deiner Zutaten zu erfassen. Diese Bilder werden lokal verarbeitet und nicht dauerhaft auf unseren Servern gespeichert.</li>
+                <li><strong>Standort:</strong> Optional, für regionale Rezeptvorschläge und wetterbasierte Empfehlungen. Wird nicht gespeichert.</li>
+                <li><strong>Zutatenlisten:</strong> Von dir eingegebene Zutaten werden an OpenAI-APIs übertragen, um Rezepte zu generieren.</li>
+                <li><strong>Push-Benachrichtigungen:</strong> Mit deiner Erlaubnis senden wir Push-Benachrichtigungen (z. B. Einkaufslisten-Erinnerungen).</li>
+                <li><strong>Kaufdaten:</strong> In-App-Käufe werden über Apple App Store / Google Play abgewickelt. Wir haben keinen Zugriff auf deine Zahlungsdaten.</li>
+                <li><strong>Anonyme Nutzungsdaten:</strong> Firebase erfasst anonymisierte Nutzungsstatistiken (z. B. Absturzberichte).</li>
             </ul>
-        </div>
+
+            <h2>3. Kamera-Berechtigung</h2>
+            <p>Die App fordert Zugriff auf die Kamera, damit du Fotos deiner Lebensmittel aufnehmen kannst. Diese Berechtigung ist optional — die App funktioniert auch ohne Kamerazugriff. Fotos verlassen dein Gerät nur zur KI-Analyse und werden nicht dauerhaft gespeichert.</p>
+
+            <h2>4. Drittanbieter</h2>
+            <ul>
+                <li><strong>OpenAI</strong> — Rezeptgenerierung (<a href="https://openai.com/privacy" target="_blank" rel="noopener">openai.com/privacy</a>)</li>
+                <li><strong>Google Firebase</strong> — Authentifizierung, Datenbank, Analytics (<a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com/support/privacy</a>)</li>
+                <li><strong>RevenueCat</strong> — In-App-Käufe (<a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">revenuecat.com/privacy</a>)</li>
+                <li><strong>Google AdMob</strong> — Werbung (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>)</li>
+            </ul>
+
+            <h2>5. Datenspeicherung</h2>
+            <p>Deine Rezepte und Einkaufslisten werden in deinem persönlichen Firebase-Account gespeichert. Du kannst dein Konto und alle zugehörigen Daten jederzeit in der App löschen (Einstellungen → „Alle Daten löschen").</p>
+
+            <h2>6. Deine Rechte</h2>
+            <p>Du hast das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung deiner Daten. Kontaktiere uns dafür unter der oben genannten E-Mail-Adresse.</p>
+
+            <h2>7. Kontakt</h2>
+            <p>Bei Fragen zum Datenschutz: <a href="mailto:mahir.tas.mt@gmail.com">mahir.tas.mt@gmail.com</a></p>
+        </section>
+
+        <!-- ENGLISH -->
+        <section id="en" class="legal" lang="en">
+            <p class="meta-line"><strong>Last updated:</strong> April 2026 · Controller: Mahir Tas</p>
+
+            <h2 class="first">1. Controller</h2>
+            <p>Mahir Tas<br>Email: <a href="mailto:mahir.tas.mt@gmail.com">mahir.tas.mt@gmail.com</a></p>
+
+            <h2>2. Data We Collect</h2>
+            <ul>
+                <li><strong>Camera &amp; Photos:</strong> The app may access your camera and photo library to capture images of your ingredients. Images are processed locally and not permanently stored on our servers.</li>
+                <li><strong>Location:</strong> Optional, used for regional recipe suggestions and weather-based recommendations. Not stored.</li>
+                <li><strong>Ingredient Lists:</strong> Ingredients you enter are sent to OpenAI APIs to generate recipes.</li>
+                <li><strong>Push Notifications:</strong> With your permission, we send push notifications (e.g. shopping list reminders).</li>
+                <li><strong>Purchase Data:</strong> In-app purchases are handled by Apple App Store / Google Play. We have no access to your payment details.</li>
+                <li><strong>Anonymous Usage Data:</strong> Firebase collects anonymized usage statistics (e.g. crash reports).</li>
+            </ul>
+
+            <h2>3. Camera Permission</h2>
+            <p>The app requests camera access so you can take photos of your food. This permission is optional — the app works without camera access. Photos only leave your device for AI analysis and are not stored permanently.</p>
+
+            <h2>4. Third-Party Services</h2>
+            <ul>
+                <li><strong>OpenAI</strong> — Recipe generation (<a href="https://openai.com/privacy" target="_blank" rel="noopener">openai.com/privacy</a>)</li>
+                <li><strong>Google Firebase</strong> — Auth, database, analytics (<a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com/support/privacy</a>)</li>
+                <li><strong>RevenueCat</strong> — In-app purchases (<a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">revenuecat.com/privacy</a>)</li>
+                <li><strong>Google AdMob</strong> — Advertising (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>)</li>
+            </ul>
+
+            <h2>5. Data Storage</h2>
+            <p>Your recipes and shopping lists are stored in your personal Firebase account. You can delete your account and all associated data at any time within the app (Settings → "Delete all data").</p>
+
+            <h2>6. Your Rights</h2>
+            <p>You have the right to access, correct, delete, and restrict processing of your data. Contact us at the email address above.</p>
+
+            <h2>7. Contact</h2>
+            <p>For privacy questions: <a href="mailto:mahir.tas.mt@gmail.com">mahir.tas.mt@gmail.com</a></p>
+        </section>
+
     </div>
-</section>
+</div>
 
 <footer>
-    <div class="container">
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <a href="#" class="brand" style="color: white;">
-                    <span class="brand-icon">🍳</span>
-                    <span>PantryFusion</span>
-                </a>
-                <p lang="de">
-                    Die smarte Rezept-App für alle, die mit Freude und ohne Verschwendung kochen wollen.
-                </p>
-                <p lang="en">
-                    The smart recipe app for anyone who wants to cook with joy and without waste.
-                </p>
-            </div>
-            <div>
-                <h4 lang="de">App</h4>
-                <h4 lang="en">App</h4>
-                <a href="https://apps.apple.com/app/pantryfusion/id6761635772">App Store</a>
-                <a href="#features" data-i18n="nav-features">Funktionen</a>
-                <a href="#languages" data-i18n="nav-languages">Sprachen</a>
-                <a href="#pricing" data-i18n="nav-pricing">Preis</a>
-            </div>
-            <div>
-                <h4 lang="de">Rechtliches</h4>
-                <h4 lang="en">Legal</h4>
-                <a href="pantryfusion-privacy/" data-i18n="nav-privacy">Datenschutz</a>
-                <a href="pantryfusion-privacy/support.html" data-i18n="nav-support">Support</a>
-                <a href="pantryfusion-privacy/delete-data.html" data-i18n="nav-delete">Daten löschen</a>
-                <a href="mailto:mahir.tas.mt@gmail.com" data-i18n="nav-contact">Kontakt</a>
-            </div>
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="https://mahirtas.github.io/" class="brand">
+                <span class="brand-icon">🍳</span>
+                <span>PantryFusion</span>
+            </a>
+            <p>Die smarte Rezept-App für alle, die mit Freude und ohne Verschwendung kochen wollen.</p>
         </div>
-        <div class="footer-bottom">
-            &copy; 2026 Mahir Tas · Made with 🍳 in Frankfurt am Main
+        <div>
+            <h4>App</h4>
+            <a href="https://apps.apple.com/app/pantryfusion/id6761635772">App Store</a>
+            <a href="https://mahirtas.github.io/">Startseite</a>
         </div>
+        <div>
+            <h4>Rechtliches</h4>
+            <a href="./">Datenschutz</a>
+            <a href="support.html">Support</a>
+            <a href="delete-data.html">Daten löschen</a>
+            <a href="mailto:mahir.tas.mt@gmail.com">Kontakt</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 Mahir Tas · Made with 🍳 in Frankfurt am Main
     </div>
 </footer>
 
 <script>
 (function() {
     var KEY = 'pf-lang';
-    var DEFAULTS = {
-        'nav-features':  { de: 'Funktionen',     en: 'Features' },
-        'nav-languages': { de: 'Sprachen',       en: 'Languages' },
-        'nav-pricing':   { de: 'Preis',          en: 'Pricing' },
-        'nav-privacy':   { de: 'Datenschutz',    en: 'Privacy' },
-        'nav-support':   { de: 'Support',        en: 'Support' },
-        'nav-delete':    { de: 'Daten löschen',  en: 'Delete data' },
-        'nav-contact':   { de: 'Kontakt',        en: 'Contact' }
-    };
+    var DEFAULTS = { 'nav-home': { de: 'Startseite', en: 'Home' }, 'nav-support': { de: 'Support', en: 'Support' } };
     var stored = (function(){ try { return localStorage.getItem(KEY); } catch(e) { return null; } })();
     var browser = (navigator.language || 'en').toLowerCase().indexOf('de') === 0 ? 'de' : 'en';
     setLang(stored || browser);
