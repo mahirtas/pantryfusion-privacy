@@ -1,122 +1,614 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PantryFusion – Daten löschen / Delete Data</title>
-  <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.6; }
-    h1 { color: #FF6B6B; border-bottom: 2px solid #FF6B6B; padding-bottom: 8px; }
-    h2 { color: #FF6B6B; margin-top: 32px; }
-    hr { border: none; border-top: 1px solid #eee; margin: 40px 0; }
-    .lang-switch { text-align: right; margin-bottom: 20px; font-size: 14px; }
-    a { color: #FF6B6B; }
-    ol li { margin-bottom: 8px; }
-    .box { background: #FFF4F4; border-left: 4px solid #FF6B6B; padding: 12px 16px; margin: 16px 0; border-radius: 4px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PantryFusion — So löschst du alle deine Daten (lokal und auf unseren Servern).">
+    <meta name="theme-color" content="#FF6B6B">
+    <title>Daten löschen · PantryFusion</title>
+
+    <style>
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --tertiary: #FFE66D;
+            --dark: #1E1E2E;
+            --light: #FFFFFF;
+            --gray-50: #FAFAFA;
+            --gray-100: #F4F4F5;
+            --gray-200: #E4E4E7;
+            --gray-500: #71717A;
+            --gray-700: #3F3F46;
+            --gradient-soft: linear-gradient(180deg, #FFF6F6 0%, #FFFFFF 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        [hidden] { display: none !important; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            color: var(--dark);
+            line-height: 1.65;
+            background: var(--light);
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; }
+
+        /* Header */
+        header {
+            position: sticky; top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .header-inner {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 1.5rem; max-width: 1100px; margin: 0 auto;
+        }
+
+        .brand {
+            display: flex; align-items: center; gap: 0.6rem;
+            font-weight: 700; font-size: 1.15rem;
+            color: var(--dark); text-decoration: none;
+        }
+
+        .brand-icon { font-size: 1.6rem; line-height: 1; }
+
+        nav ul { list-style: none; display: flex; gap: 1.5rem; }
+
+        nav a {
+            color: var(--gray-700); text-decoration: none;
+            font-size: 0.95rem; font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover { color: var(--primary); }
+
+        @media (max-width: 640px) { nav { display: none; } }
+
+        /* Lang Toggle */
+        .header-right { display: flex; align-items: center; gap: 1.2rem; }
+
+        .lang-toggle {
+            display: inline-flex;
+            background: var(--gray-100);
+            border-radius: 999px;
+            padding: 3px;
+        }
+
+        .lang-toggle button {
+            border: none; background: transparent;
+            padding: 0.4rem 0.9rem;
+            border-radius: 999px;
+            font-weight: 600; font-size: 0.85rem;
+            color: var(--gray-500);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .lang-toggle button.active {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+        }
+
+        .lang-toggle button:hover:not(.active) { color: var(--gray-700); }
+
+        /* Hero */
+        .hero {
+            background: var(--gradient-soft);
+            padding: 4rem 0 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -10%;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(255, 107, 107, 0.18) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content { position: relative; z-index: 1; }
+
+        .hero-emoji { font-size: 3.5rem; margin-bottom: 1rem; }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+        }
+
+        .hero p { color: var(--gray-500); font-size: 1.05rem; max-width: 580px; margin: 0 auto; }
+
+        .lang-switch {
+            display: flex; gap: 0.5rem; justify-content: center;
+            margin: 2.5rem 0 0;
+        }
+
+        .lang-pill {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: white;
+            border: 1.5px solid var(--gray-200);
+            border-radius: 999px;
+            padding: 0.55rem 1.2rem;
+            font-size: 0.95rem; font-weight: 600;
+            color: var(--gray-700);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .lang-pill:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-1px);
+        }
+
+        /* Content */
+        .content { padding: 3rem 0 4rem; }
+
+        .meta-line {
+            text-align: center;
+            color: var(--gray-500);
+            font-size: 0.9rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .meta-line strong { color: var(--gray-700); }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 3rem 0 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+        }
+
+        .section-title.first { margin-top: 0; }
+
+        .section p {
+            color: var(--gray-700);
+            margin-bottom: 1rem;
+        }
+
+        .section a {
+            color: var(--primary);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-thickness: 1.5px;
+            font-weight: 600;
+        }
+
+        .section a:hover { color: var(--dark); }
+
+        /* Step list */
+        .step-list {
+            counter-reset: step;
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        .step-list li {
+            counter-increment: step;
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 1rem 1.2rem 1rem 3.5rem;
+            margin-bottom: 0.7rem;
+            position: relative;
+            color: var(--gray-700);
+            font-size: 0.98rem;
+            transition: border-color 0.2s;
+        }
+
+        .step-list li:hover { border-color: var(--primary); }
+
+        .step-list li::before {
+            content: counter(step);
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1.8rem;
+            height: 1.8rem;
+            background: var(--primary);
+            color: white;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .step-list strong { color: var(--dark); }
+
+        /* Warning box */
+        .warning-box {
+            background: linear-gradient(135deg, #FFF6F6 0%, #FFFAF0 100%);
+            border-left: 4px solid var(--primary);
+            border-radius: 12px;
+            padding: 1.2rem 1.4rem;
+            margin: 1.5rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            color: var(--gray-700);
+        }
+
+        .warning-box-icon {
+            font-size: 1.6rem;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+
+        .warning-box-body strong { color: var(--dark); }
+
+        /* Data card */
+        .data-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 1.4rem 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .data-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .data-card h3 .data-icon {
+            font-size: 1.3rem;
+            line-height: 1;
+        }
+
+        .data-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .data-card ul li {
+            color: var(--gray-700);
+            font-size: 0.95rem;
+            padding: 0.35rem 0 0.35rem 1.2rem;
+            position: relative;
+        }
+
+        .data-card ul li::before {
+            content: '✓';
+            color: var(--secondary);
+            font-weight: 700;
+            position: absolute;
+            left: 0;
+        }
+
+        .data-card.retained ul li::before {
+            content: '◆';
+            color: var(--tertiary);
+            text-shadow: 0 0 0 var(--gray-500);
+            color: #C9A227;
+        }
+
+        .data-card code {
+            background: var(--gray-100);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--dark);
+        }
+
+        .divider {
+            border: none;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--gray-200), transparent);
+            margin: 4rem 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-inner {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            max-width: 1100px;
+            margin-left: auto; margin-right: auto;
+            padding: 0 1.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .footer-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+        }
+
+        footer h4 {
+            color: white; font-size: 1rem;
+            margin-bottom: 1rem; font-weight: 600;
+        }
+
+        footer a {
+            color: rgba(255, 255, 255, 0.65);
+            text-decoration: none; display: block;
+            padding: 0.3rem 0; font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        footer a:hover { color: var(--primary); }
+
+        .footer-brand p {
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 320px;
+        }
+
+        .footer-brand .brand { color: white; }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+    </style>
 </head>
 <body>
-<div class="lang-switch">
-  <a href="#de">Deutsch</a> | <a href="#en">English</a> |
-  <a href="https://mahirtas.github.io/pantryfusion-privacy/">Datenschutz / Privacy</a> |
-  <a href="https://mahirtas.github.io/pantryfusion-privacy/support.html">Support</a>
+
+<header>
+    <div class="header-inner">
+        <a href="https://mahirtas.github.io/" class="brand">
+            <span class="brand-icon">🍳</span>
+            <span>PantryFusion</span>
+        </a>
+        <div class="header-right">
+            <nav>
+                <ul>
+                    <li><a href="https://mahirtas.github.io/" data-i18n="nav-home">Startseite</a></li>
+                    <li><a href="./" data-i18n="nav-privacy">Datenschutz</a></li>
+                    <li><a href="support.html" data-i18n="nav-support">Support</a></li>
+                </ul>
+            </nav>
+            <div class="lang-toggle" role="group" aria-label="Language">
+                <button type="button" data-lang="de">DE</button>
+                <button type="button" data-lang="en">EN</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container hero-content">
+        <div class="hero-emoji">🗑️</div>
+        <h1 lang="de">Daten löschen</h1>
+        <h1 lang="en">Delete data</h1>
+        <p lang="de">So entfernst du alle deine PantryFusion-Daten — lokal auf deinem Gerät und auf unseren Servern. Schnell, vollständig, unwiderruflich.</p>
+        <p lang="en">How to remove all your PantryFusion data — both locally on your device and on our servers. Fast, complete, irreversible.</p>
+    </div>
+</section>
+
+<div class="content">
+    <div class="container">
+
+        <!-- DEUTSCH -->
+        <section id="de" class="section" lang="de">
+
+            <p class="meta-line"><strong>Stand:</strong> Mai 2026</p>
+
+            <h2 class="section-title first">1. Löschung direkt in der App (empfohlen)</h2>
+            <ol class="step-list">
+                <li>Öffne die <strong>PantryFusion</strong>-App.</li>
+                <li>Tippe unten auf <strong>Einstellungen</strong>.</li>
+                <li>Scrolle zum Abschnitt <strong>Rechtliches</strong>.</li>
+                <li>Tippe auf <strong>„Meine Daten löschen"</strong>.</li>
+                <li>Bestätige in zwei aufeinanderfolgenden Dialogen, dass du die Löschung wirklich durchführen möchtest.</li>
+            </ol>
+            <div class="warning-box">
+                <span class="warning-box-icon">⚡</span>
+                <div class="warning-box-body">
+                    <strong>Sofortig und unwiderruflich.</strong> Du kannst die App danach weiter nutzen — beim nächsten Start wird automatisch ein neues anonymes Konto erstellt.
+                </div>
+            </div>
+
+            <h2 class="section-title">2. Löschung per E-Mail (falls App deinstalliert)</h2>
+            <p>Falls du die App bereits deinstalliert hast, schreibe uns an <a href="mailto:mahir.tas.mt@gmail.com?subject=Datenl%C3%B6schung%20PantryFusion">mahir.tas.mt@gmail.com</a> mit dem Betreff <strong>„Datenlöschung PantryFusion"</strong>. Wir löschen deine Server-Daten innerhalb von 7 Tagen und bestätigen die Löschung per E-Mail.</p>
+            <p>Bitte nenne uns die E-Mail-Adresse, mit der du uns kontaktierst, sowie das Betriebssystem (iOS/Android), damit wir den richtigen Datensatz zuordnen können.</p>
+
+            <h2 class="section-title">3. Was wird gelöscht?</h2>
+
+            <div class="data-card">
+                <h3><span class="data-icon">☁️</span> Server-Daten (Google Firebase)</h3>
+                <ul>
+                    <li>Anonyme Benutzer-ID (Firebase Auth)</li>
+                    <li>PRO-Status und Tageskontingent (Firestore: <code>users/{uid}</code>, <code>userQuota/{uid}</code>)</li>
+                </ul>
+            </div>
+
+            <div class="data-card">
+                <h3><span class="data-icon">📱</span> Lokale Daten (auf deinem Gerät)</h3>
+                <ul>
+                    <li>Rezept-Verlauf, Pantry, Einkaufsliste, Essensplan</li>
+                    <li>Familienprofile, Allergien, Geräte-Einstellungen</li>
+                    <li>Foto-Cache und gespeicherte Bilder</li>
+                </ul>
+            </div>
+
+            <h2 class="section-title">4. Was wird aufbewahrt?</h2>
+
+            <div class="data-card retained">
+                <h3><span class="data-icon">🔄</span> Anonymisierter Rezept-Cache</h3>
+                <ul>
+                    <li>Anonymisierte Rezept-Anfragen werden für maximal <strong>30 Tage</strong> in Firebase Firestore zwischengespeichert, um Kosten zu reduzieren. Diese enthalten keinerlei personenbezogene Daten und können dir nicht zugeordnet werden.</li>
+                </ul>
+            </div>
+
+            <div class="data-card retained">
+                <h3><span class="data-icon">💳</span> Abonnement-Daten</h3>
+                <ul>
+                    <li>Dein Abo bleibt mit deinem Apple-ID- bzw. Google-Play-Konto verknüpft und wird von Apple/Google verwaltet. Wir haben darauf keinen Zugriff. Die Verwaltung erfolgt direkt im App Store bzw. Google Play.</li>
+                </ul>
+            </div>
+
+            <h2 class="section-title">5. Kontakt</h2>
+            <p>Bei Fragen zur Datenlöschung: <a href="mailto:mahir.tas.mt@gmail.com">mahir.tas.mt@gmail.com</a></p>
+
+        </section>
+
+        <!-- ENGLISH -->
+        <section id="en" class="section" lang="en">
+
+            <p class="meta-line"><strong>Last updated:</strong> May 2026</p>
+
+            <h2 class="section-title first">1. Delete directly in the app (recommended)</h2>
+            <ol class="step-list">
+                <li>Open the <strong>PantryFusion</strong> app.</li>
+                <li>Tap <strong>Settings</strong> at the bottom.</li>
+                <li>Scroll to the <strong>Legal</strong> section.</li>
+                <li>Tap <strong>"Delete my data"</strong>.</li>
+                <li>Confirm two consecutive dialogs to proceed with permanent deletion.</li>
+            </ol>
+            <div class="warning-box">
+                <span class="warning-box-icon">⚡</span>
+                <div class="warning-box-body">
+                    <strong>Immediate and irreversible.</strong> You can continue using the app afterwards — a new anonymous account is automatically created on the next launch.
+                </div>
+            </div>
+
+            <h2 class="section-title">2. Delete via email (if the app is uninstalled)</h2>
+            <p>If you have already uninstalled the app, email us at <a href="mailto:mahir.tas.mt@gmail.com?subject=Data%20Deletion%20PantryFusion">mahir.tas.mt@gmail.com</a> with the subject <strong>"Data Deletion PantryFusion"</strong>. We will delete your server-side data within 7 days and confirm by email.</p>
+            <p>Please include the email address you are contacting us from, as well as your operating system (iOS/Android), so we can identify the correct record.</p>
+
+            <h2 class="section-title">3. What gets deleted?</h2>
+
+            <div class="data-card">
+                <h3><span class="data-icon">☁️</span> Server data (Google Firebase)</h3>
+                <ul>
+                    <li>Anonymous user ID (Firebase Auth)</li>
+                    <li>PRO status and daily quota (Firestore: <code>users/{uid}</code>, <code>userQuota/{uid}</code>)</li>
+                </ul>
+            </div>
+
+            <div class="data-card">
+                <h3><span class="data-icon">📱</span> Local data (on your device)</h3>
+                <ul>
+                    <li>Recipe history, pantry, shopping list, meal plan</li>
+                    <li>Family profiles, allergies, device settings</li>
+                    <li>Photo cache and stored images</li>
+                </ul>
+            </div>
+
+            <h2 class="section-title">4. What is retained?</h2>
+
+            <div class="data-card retained">
+                <h3><span class="data-icon">🔄</span> Anonymized recipe cache</h3>
+                <ul>
+                    <li>Anonymized recipe requests are cached in Firebase Firestore for a maximum of <strong>30 days</strong> to reduce costs. These contain no personal data and cannot be linked back to you.</li>
+                </ul>
+            </div>
+
+            <div class="data-card retained">
+                <h3><span class="data-icon">💳</span> Subscription data</h3>
+                <ul>
+                    <li>Your subscription stays linked to your Apple ID or Google Play account and is managed by Apple/Google. We have no access to it. Manage it directly in the App Store or Google Play.</li>
+                </ul>
+            </div>
+
+            <h2 class="section-title">5. Contact</h2>
+            <p>For questions about data deletion: <a href="mailto:mahir.tas.mt@gmail.com">mahir.tas.mt@gmail.com</a></p>
+
+        </section>
+
+    </div>
 </div>
 
-<section id="de">
-<h1>Daten löschen – PantryFusion</h1>
-<p><strong>Stand:</strong> Mai 2026</p>
+<footer>
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="https://mahirtas.github.io/" class="brand">
+                <span class="brand-icon">🍳</span>
+                <span>PantryFusion</span>
+            </a>
+            <p>Die smarte Rezept-App für alle, die mit Freude und ohne Verschwendung kochen wollen.</p>
+        </div>
+        <div>
+            <h4>App</h4>
+            <a href="https://apps.apple.com/app/pantryfusion/id6761635772">App Store</a>
+            <a href="https://mahirtas.github.io/">Startseite</a>
+        </div>
+        <div>
+            <h4>Rechtliches</h4>
+            <a href="./">Datenschutz</a>
+            <a href="support.html">Support</a>
+            <a href="delete-data.html">Daten löschen</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 Mahir Tas · Made with 🍳 in Frankfurt am Main
+    </div>
+</footer>
 
-<p>Auf dieser Seite erfährst du, wie du alle deine in PantryFusion gespeicherten Daten löschen kannst – sowohl lokal auf deinem Gerät als auch auf unseren Servern.</p>
-
-<h2>1. Löschung direkt in der App (empfohlen)</h2>
-<ol>
-  <li>Öffne die <strong>PantryFusion</strong>-App.</li>
-  <li>Tippe unten auf <strong>Einstellungen</strong>.</li>
-  <li>Scrolle zum Abschnitt <strong>Rechtliches</strong>.</li>
-  <li>Tippe auf <strong>„Meine Daten löschen"</strong>.</li>
-  <li>Bestätige in zwei aufeinanderfolgenden Dialogen, dass du die Löschung wirklich durchführen möchtest.</li>
-</ol>
-<div class="box">Die Löschung erfolgt sofort und ist unwiderruflich. Du kannst die App danach weiter nutzen – ein neues anonymes Konto wird beim nächsten Start automatisch erstellt.</div>
-
-<h2>2. Löschung per E-Mail (falls App deinstalliert)</h2>
-<p>Falls du die App bereits deinstalliert hast, schreibe uns an <a href="mailto:mahir.tas.mt@gmail.com?subject=Datenl%C3%B6schung%20PantryFusion">mahir.tas.mt@gmail.com</a> mit dem Betreff <strong>„Datenlöschung PantryFusion"</strong>. Wir löschen deine Server-Daten innerhalb von 7 Tagen und bestätigen die Löschung per E-Mail.</p>
-<p>Bitte nenne uns die E-Mail-Adresse, mit der du uns kontaktierst, sowie das Betriebssystem (iOS/Android), damit wir den richtigen Datensatz zuordnen können.</p>
-
-<h2>3. Welche Daten werden gelöscht?</h2>
-<ul>
-  <li><strong>Server-Daten (Google Firebase):</strong>
-    <ul>
-      <li>Anonyme Benutzer-ID (Firebase Auth)</li>
-      <li>PRO-Status und Tageskontingent (Firestore: <code>users/{uid}</code>, <code>userQuota/{uid}</code>)</li>
-    </ul>
-  </li>
-  <li><strong>Lokale Daten (auf deinem Gerät):</strong>
-    <ul>
-      <li>Rezept-Verlauf, Pantry, Einkaufsliste, Essensplan</li>
-      <li>Familienprofile, Allergien, Geräte-Einstellungen</li>
-      <li>Foto-Cache und gespeicherte Bilder</li>
-    </ul>
-  </li>
-</ul>
-
-<h2>4. Welche Daten werden aufbewahrt?</h2>
-<ul>
-  <li><strong>Anonymisierter Rezept-Cache:</strong> Anonymisierte Rezept-Anfragen werden für maximal <strong>30 Tage</strong> in Firebase Firestore zwischengespeichert, um Kosten zu reduzieren. Diese enthalten keinerlei personenbezogene Daten und können dir nicht zugeordnet werden.</li>
-  <li><strong>Abonnement-Daten:</strong> Dein Abo bleibt mit deinem Apple-ID- bzw. Google-Play-Konto verknüpft und wird von Apple/Google verwaltet. Wir haben darauf keinen Zugriff. Die Verwaltung erfolgt direkt im App Store bzw. Google Play.</li>
-</ul>
-
-<h2>5. Kontakt</h2>
-<p>Bei Fragen zur Datenlöschung: <a href="mailto:mahir.tas.mt@gmail.com">mahir.tas.mt@gmail.com</a></p>
-</section>
-
-<hr />
-
-<section id="en">
-<h1>Delete Data – PantryFusion</h1>
-<p><strong>Last updated:</strong> May 2026</p>
-
-<p>This page explains how to delete all data stored by PantryFusion – both locally on your device and on our servers.</p>
-
-<h2>1. Delete directly in the app (recommended)</h2>
-<ol>
-  <li>Open the <strong>PantryFusion</strong> app.</li>
-  <li>Tap <strong>Settings</strong> at the bottom.</li>
-  <li>Scroll to the <strong>Legal</strong> section.</li>
-  <li>Tap <strong>"Delete my data"</strong>.</li>
-  <li>Confirm two consecutive dialogs to proceed with permanent deletion.</li>
-</ol>
-<div class="box">Deletion is immediate and irreversible. You can continue using the app afterwards – a new anonymous account is automatically created on the next launch.</div>
-
-<h2>2. Delete via email (if the app is uninstalled)</h2>
-<p>If you have already uninstalled the app, email us at <a href="mailto:mahir.tas.mt@gmail.com?subject=Data%20Deletion%20PantryFusion">mahir.tas.mt@gmail.com</a> with the subject <strong>"Data Deletion PantryFusion"</strong>. We will delete your server-side data within 7 days and confirm by email.</p>
-<p>Please include the email address you are contacting us from, as well as your operating system (iOS/Android), so we can identify the correct record.</p>
-
-<h2>3. What data will be deleted?</h2>
-<ul>
-  <li><strong>Server data (Google Firebase):</strong>
-    <ul>
-      <li>Anonymous user ID (Firebase Auth)</li>
-      <li>PRO status and daily quota (Firestore: <code>users/{uid}</code>, <code>userQuota/{uid}</code>)</li>
-    </ul>
-  </li>
-  <li><strong>Local data (on your device):</strong>
-    <ul>
-      <li>Recipe history, pantry, shopping list, meal plan</li>
-      <li>Family profiles, allergies, device settings</li>
-      <li>Photo cache and stored images</li>
-    </ul>
-  </li>
-</ul>
-
-<h2>4. What data is retained?</h2>
-<ul>
-  <li><strong>Anonymized recipe cache:</strong> Anonymized recipe requests are cached in Firebase Firestore for a maximum of <strong>30 days</strong> to reduce costs. These contain no personal data and cannot be linked back to you.</li>
-  <li><strong>Subscription data:</strong> Your subscription stays linked to your Apple ID or Google Play account and is managed by Apple/Google. We have no access to it. Manage it directly in the App Store or Google Play.</li>
-</ul>
-
-<h2>5. Contact</h2>
-<p>For questions about data deletion: <a href="mailto:mahir.tas.mt@gmail.com">mahir.tas.mt@gmail.com</a></p>
-</section>
+<script>
+(function() {
+    var KEY = 'pf-lang';
+    var DEFAULTS = {
+        'nav-home': { de: 'Startseite', en: 'Home' },
+        'nav-privacy': { de: 'Datenschutz', en: 'Privacy' },
+        'nav-support': { de: 'Support', en: 'Support' }
+    };
+    var stored = (function(){ try { return localStorage.getItem(KEY); } catch(e) { return null; } })();
+    var browser = (navigator.language || 'en').toLowerCase().indexOf('de') === 0 ? 'de' : 'en';
+    setLang(stored || browser);
+    document.querySelectorAll('.lang-toggle button').forEach(function(btn) {
+        btn.addEventListener('click', function() { setLang(btn.dataset.lang); });
+    });
+    function setLang(lang) {
+        if (lang !== 'de' && lang !== 'en') lang = 'en';
+        try { localStorage.setItem(KEY, lang); } catch(e) {}
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[lang]').forEach(function(el) {
+            var l = el.getAttribute('lang');
+            if (l === 'de' || l === 'en') el.hidden = (l !== lang);
+        });
+        document.querySelectorAll('[data-i18n]').forEach(function(el) {
+            var key = el.getAttribute('data-i18n');
+            if (DEFAULTS[key] && DEFAULTS[key][lang]) el.textContent = DEFAULTS[key][lang];
+        });
+        document.querySelectorAll('.lang-toggle button').forEach(function(btn) {
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+    }
+})();
+</script>
 
 </body>
 </html>
