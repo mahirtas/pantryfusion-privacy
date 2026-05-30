@@ -1,105 +1,594 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PantryFusion – Support</title>
-<style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-         max-width: 720px; margin: 40px auto; padding: 0 20px; color: #1a1a1a; line-height: 1.6; }
-  h1 { color: #FF6B6B; border-bottom: 2px solid #FF6B6B; padding-bottom: 8px; }
-  h2 { color: #FF6B6B; margin-top: 32px; }
-  h3 { margin-top: 20px; }
-  a { color: #FF6B6B; }
-  .lang-switch { text-align: right; margin-bottom: 20px; font-size: 14px; }
-  .contact-box { background: #f5f9f6; border-left: 4px solid #FF6B6B; 
-                 padding: 16px 20px; margin: 20px 0; border-radius: 4px; }
-  hr { border: none; border-top: 1px solid #ddd; margin: 40px 0; }
-  footer { text-align: center; color: #888; font-size: 13px; margin-top: 40px; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PantryFusion Support — Hilfe, FAQ und direkter Kontakt.">
+    <meta name="theme-color" content="#FF6B6B">
+    <title>Support · PantryFusion</title>
+
+    <style>
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --tertiary: #FFE66D;
+            --dark: #1E1E2E;
+            --light: #FFFFFF;
+            --gray-50: #FAFAFA;
+            --gray-100: #F4F4F5;
+            --gray-200: #E4E4E7;
+            --gray-500: #71717A;
+            --gray-700: #3F3F46;
+            --gradient-soft: linear-gradient(180deg, #FFF6F6 0%, #FFFFFF 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        [hidden] { display: none !important; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            color: var(--dark);
+            line-height: 1.65;
+            background: var(--light);
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; }
+
+        /* Header */
+        header {
+            position: sticky; top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .header-inner {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 1.5rem; max-width: 1100px; margin: 0 auto;
+        }
+
+        .brand {
+            display: flex; align-items: center; gap: 0.6rem;
+            font-weight: 700; font-size: 1.15rem;
+            color: var(--dark); text-decoration: none;
+        }
+
+        .brand-icon { font-size: 1.6rem; line-height: 1; }
+
+        nav ul { list-style: none; display: flex; gap: 1.5rem; }
+
+        nav a {
+            color: var(--gray-700); text-decoration: none;
+            font-size: 0.95rem; font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover { color: var(--primary); }
+
+        @media (max-width: 640px) { nav { display: none; } }
+
+        /* Lang Toggle */
+        .header-right { display: flex; align-items: center; gap: 1.2rem; }
+
+        .lang-toggle {
+            display: inline-flex;
+            background: var(--gray-100);
+            border-radius: 999px;
+            padding: 3px;
+        }
+
+        .lang-toggle button {
+            border: none; background: transparent;
+            padding: 0.4rem 0.9rem;
+            border-radius: 999px;
+            font-weight: 600; font-size: 0.85rem;
+            color: var(--gray-500);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .lang-toggle button.active {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+        }
+
+        .lang-toggle button:hover:not(.active) { color: var(--gray-700); }
+
+        /* Hero */
+        .hero {
+            background: var(--gradient-soft);
+            padding: 4rem 0 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -10%;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(78, 205, 196, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content { position: relative; z-index: 1; }
+
+        .hero-emoji { font-size: 3.5rem; margin-bottom: 1rem; }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+        }
+
+        .hero p { color: var(--gray-500); font-size: 1.05rem; }
+
+        /* Language Switcher */
+        .lang-switch {
+            display: flex; gap: 0.5rem; justify-content: center;
+            margin: 2.5rem 0 0;
+        }
+
+        .lang-pill {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: white;
+            border: 1.5px solid var(--gray-200);
+            border-radius: 999px;
+            padding: 0.55rem 1.2rem;
+            font-size: 0.95rem; font-weight: 600;
+            color: var(--gray-700);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .lang-pill:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-1px);
+        }
+
+        /* Content */
+        .content { padding: 3rem 0 4rem; }
+
+        .contact-card {
+            background: linear-gradient(135deg, #FFF6F6 0%, #FFFFFF 100%);
+            border: 1.5px solid var(--primary);
+            border-radius: 16px;
+            padding: 1.8rem;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+        }
+
+        .contact-card-icon {
+            font-size: 2.4rem;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+
+        .contact-card-body h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            color: var(--dark);
+        }
+
+        .contact-card-body a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .contact-card-body a:hover { text-decoration: underline; }
+
+        .contact-card-body p {
+            color: var(--gray-500);
+            font-size: 0.92rem;
+            margin-top: 0.3rem;
+        }
+
+        /* Section title */
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin: 2.5rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+        }
+
+        /* FAQ Cards */
+        .faq-item {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            margin-bottom: 0.8rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.08);
+        }
+
+        .faq-item summary {
+            padding: 1.1rem 1.4rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--dark);
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .faq-item summary::-webkit-details-marker { display: none; }
+
+        .faq-item summary::after {
+            content: '+';
+            font-size: 1.4rem;
+            color: var(--primary);
+            font-weight: 400;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+
+        .faq-item[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.4rem 1.2rem;
+            color: var(--gray-700);
+            font-size: 0.96rem;
+            line-height: 1.6;
+        }
+
+        .faq-answer a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .faq-answer strong { color: var(--dark); }
+
+        .divider {
+            border: none;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--gray-200), transparent);
+            margin: 4rem 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-inner {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            max-width: 1100px;
+            margin-left: auto; margin-right: auto;
+            padding: 0 1.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .footer-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+        }
+
+        footer h4 {
+            color: white; font-size: 1rem;
+            margin-bottom: 1rem; font-weight: 600;
+        }
+
+        footer a {
+            color: rgba(255, 255, 255, 0.65);
+            text-decoration: none; display: block;
+            padding: 0.3rem 0; font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        footer a:hover { color: var(--primary); }
+
+        .footer-brand p {
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 320px;
+        }
+
+        .footer-brand .brand { color: white; }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+    </style>
 </head>
 <body>
 
-<div class="lang-switch">
-  <a href="#de">Deutsch</a> | <a href="#en">English</a> | 
-  <a href="https://mahirtas.github.io/pantryfusion-privacy/">Privacy Policy</a>
-</div>
+<header>
+    <div class="header-inner">
+        <a href="https://mahirtas.github.io/" class="brand">
+            <span class="brand-icon">🍳</span>
+            <span>PantryFusion</span>
+        </a>
+        <div class="header-right">
+            <nav>
+                <ul>
+                    <li><a href="https://mahirtas.github.io/" data-i18n="nav-home">Startseite</a></li>
+                    <li><a href="./" data-i18n="nav-privacy">Datenschutz</a></li>
+                    <li><a href="https://apps.apple.com/app/pantryfusion/id6761635772">App Store</a></li>
+                </ul>
+            </nav>
+            <div class="lang-toggle" role="group" aria-label="Language">
+                <button type="button" data-lang="de">DE</button>
+                <button type="button" data-lang="en">EN</button>
+            </div>
+        </div>
+    </div>
+</header>
 
-<!-- DEUTSCH -->
-<section id="de">
-<h1>PantryFusion – Support</h1>
-<p>Hallo und willkommen! Hier findest du Hilfe rund um PantryFusion.</p>
-
-<div class="contact-box">
-<strong>📧 Direkter Kontakt:</strong><br>
-<a href="mailto:mahir.tas.mt@gmail.com">mahir.tas.mt@gmail.com</a><br>
-<small>Wir antworten in der Regel innerhalb von 48 Stunden.</small>
-</div>
-
-<h2>Häufige Fragen</h2>
-
-<h3>Wie funktionieren die KI-Rezeptvorschläge?</h3>
-<p>PantryFusion analysiert deine Vorratskammer und schlägt passende, authentische Rezepte aus über 195 Länderküchen vor. Die KI berücksichtigt Saison, Wetter, deine Geräte und Diät-Präferenzen.</p>
-
-<h3>Wie viele Rezepte kann ich generieren?</h3>
-<p>Free-Nutzer: 5 KI-Rezepte pro Tag. PantryFusion Pro: unbegrenzt.</p>
-
-<h3>Wie kündige ich mein Abo?</h3>
-<p>Über die <strong>Einstellungen → Apple-ID → Abos</strong> auf deinem iPhone/iPad. Bei Android über den Play Store → Profil → Zahlungen und Abos.</p>
-
-<h3>Funktioniert die App offline?</h3>
-<p>Bereits gespeicherte Rezepte und deine Vorratskammer sind offline verfügbar. Neue KI-Rezepte benötigen eine Internetverbindung.</p>
-
-<h3>Welche Sprachen werden unterstützt?</h3>
-<p>16 Sprachen: Deutsch, Englisch, Spanisch, Französisch, Italienisch, Portugiesisch, Niederländisch, Polnisch, Russisch, Türkisch, Arabisch, Japanisch, Koreanisch, Chinesisch (vereinfacht), Hindi, Indonesisch.</p>
-
-<h3>Werden meine Daten geteilt?</h3>
-<p>Nein. Details siehe <a href="https://mahirtas.github.io/pantryfusion-privacy/">Datenschutzerklärung</a>.</p>
-
-<h3>Ich habe einen Bug gefunden!</h3>
-<p>Bitte schreibe uns an <a href="mailto:mahir.tas.mt@gmail.com">mahir.tas.mt@gmail.com</a> mit Geräte-Modell, OS-Version und einer kurzen Beschreibung.</p>
+<section class="hero">
+    <div class="container hero-content">
+        <div class="hero-emoji">💬</div>
+        <h1 lang="de">Wie können wir helfen?</h1>
+        <h1 lang="en">How can we help?</h1>
+        <p lang="de">FAQ, Kontakt und alles was du brauchst — in unter 48 Stunden gibt's Antwort.</p>
+        <p lang="en">FAQ, contact and everything you need — response within 48 hours.</p>
+    </div>
 </section>
 
-<hr>
+<div class="content">
+    <div class="container">
 
-<!-- ENGLISH -->
-<section id="en">
-<h1>PantryFusion – Support</h1>
-<p>Hi and welcome! Here you'll find help with PantryFusion.</p>
+        <!-- DEUTSCH -->
+        <section id="de" lang="de">
 
-<div class="contact-box">
-<strong>📧 Direct contact:</strong><br>
-<a href="mailto:mahir.tas.mt@gmail.com">mahir.tas.mt@gmail.com</a><br>
-<small>We typically respond within 48 hours.</small>
+            <div class="contact-card">
+                <div class="contact-card-icon">📧</div>
+                <div class="contact-card-body">
+                    <h3>Direkter Kontakt</h3>
+                    <a href="mailto:mahir.tas.mt@gmail.com">mahir.tas.mt@gmail.com</a>
+                    <p>Wir antworten in der Regel innerhalb von 48 Stunden.</p>
+                </div>
+            </div>
+
+            <h2 class="section-title">Häufige Fragen</h2>
+
+            <details class="faq-item">
+                <summary>Wie funktionieren die KI-Rezeptvorschläge?</summary>
+                <div class="faq-answer">
+                    PantryFusion analysiert deine Vorratskammer und schlägt passende, authentische Rezepte aus über 14 Welt-Küchen-Regionen vor. Die KI berücksichtigt Saison, Wetter, deine Geräte und Diät-Präferenzen.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>Wie viele Rezepte kann ich generieren?</summary>
+                <div class="faq-answer">
+                    Free-Nutzer: 3 KI-Rezepte pro Tag, plus Bonus durch Anschauen von Rewarded Ads. PantryFusion Premium: unbegrenzt.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>Wie funktioniert das 7-Tage-Trial?</summary>
+                <div class="faq-answer">
+                    Bei deiner ersten Premium-Subscription kriegst du 7 Tage gratis. Du kannst jederzeit vor Trial-Ende kündigen — keine Belastung. Verwaltung über <strong>iOS Einstellungen → Apple-ID → Abos</strong>.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>Wie kündige ich mein Abo?</summary>
+                <div class="faq-answer">
+                    <strong>iOS:</strong> Einstellungen → Apple-ID → Abos → PantryFusion → Kündigen.<br>
+                    <strong>Android:</strong> Play Store → Profil → Zahlungen und Abos → PantryFusion → Kündigen.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>Funktioniert die App offline?</summary>
+                <div class="faq-answer">
+                    Bereits gespeicherte Rezepte und deine Vorratskammer sind offline verfügbar. Neue KI-Rezepte und Standort-/Wetter-Features benötigen eine Internetverbindung.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>Welche Sprachen werden unterstützt?</summary>
+                <div class="faq-answer">
+                    15 Sprachen: Deutsch, English, Español, Français, Italiano, Português, Türkçe, Русский, العربية, हिन्दी, 中文, 日本語, 한국어, Bahasa Indonesia, Tiếng Việt.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>Wie kann ich meine Daten löschen?</summary>
+                <div class="faq-answer">
+                    Direkt in der App: <strong>Einstellungen → „Alle Daten löschen"</strong>. Das löscht deinen Account inklusive aller gespeicherten Rezepte, Vorräte und Einstellungen unwiderruflich. Details siehe <a href="./">Datenschutzerklärung</a>.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>Werden meine Daten geteilt?</summary>
+                <div class="faq-answer">
+                    Nein. Wir verkaufen keine Daten an Dritte. Notwendige Drittanbieter (OpenAI für KI, Firebase für Datenbank) sind in der <a href="./">Datenschutzerklärung</a> aufgelistet.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>Ich habe einen Bug gefunden!</summary>
+                <div class="faq-answer">
+                    Bitte schreibe uns an <a href="mailto:mahir.tas.mt@gmail.com">mahir.tas.mt@gmail.com</a> mit Geräte-Modell, OS-Version, App-Version und einer kurzen Beschreibung. Screenshots helfen uns sehr.
+                </div>
+            </details>
+
+        </section>
+
+        <!-- ENGLISH -->
+        <section id="en" lang="en">
+
+            <div class="contact-card">
+                <div class="contact-card-icon">📧</div>
+                <div class="contact-card-body">
+                    <h3>Direct contact</h3>
+                    <a href="mailto:mahir.tas.mt@gmail.com">mahir.tas.mt@gmail.com</a>
+                    <p>We typically respond within 48 hours.</p>
+                </div>
+            </div>
+
+            <h2 class="section-title">Frequently Asked Questions</h2>
+
+            <details class="faq-item">
+                <summary>How do AI recipe suggestions work?</summary>
+                <div class="faq-answer">
+                    PantryFusion analyzes your pantry and suggests authentic recipes from 14+ regional cuisines. The AI considers season, weather, your kitchen equipment, and dietary preferences.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>How many recipes can I generate?</summary>
+                <div class="faq-answer">
+                    Free users: 3 AI recipes per day, plus bonus generations by watching rewarded ads. PantryFusion Premium: unlimited.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>How does the 7-day trial work?</summary>
+                <div class="faq-answer">
+                    Your first Premium subscription includes a 7-day free trial. Cancel any time before trial ends — no charge. Manage subscriptions in <strong>iOS Settings → Apple ID → Subscriptions</strong>.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>How do I cancel my subscription?</summary>
+                <div class="faq-answer">
+                    <strong>iOS:</strong> Settings → Apple ID → Subscriptions → PantryFusion → Cancel.<br>
+                    <strong>Android:</strong> Play Store → Profile → Payments and subscriptions → PantryFusion → Cancel.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>Does the app work offline?</summary>
+                <div class="faq-answer">
+                    Saved recipes and your pantry are available offline. New AI recipes and location/weather features require an internet connection.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>Which languages are supported?</summary>
+                <div class="faq-answer">
+                    15 languages: English, Deutsch, Español, Français, Italiano, Português, Türkçe, Русский, العربية, हिन्दी, 中文, 日本語, 한국어, Bahasa Indonesia, Tiếng Việt.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>How do I delete my data?</summary>
+                <div class="faq-answer">
+                    Directly in the app: <strong>Settings → "Delete all data"</strong>. This permanently removes your account including all saved recipes, pantry items, and settings. See <a href="./">Privacy Policy</a> for details.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>Is my data shared?</summary>
+                <div class="faq-answer">
+                    No. We don't sell data to third parties. Necessary third-party services (OpenAI for AI, Firebase for database) are listed in the <a href="./">Privacy Policy</a>.
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>I found a bug!</summary>
+                <div class="faq-answer">
+                    Please email <a href="mailto:mahir.tas.mt@gmail.com">mahir.tas.mt@gmail.com</a> with your device model, OS version, app version, and a short description. Screenshots are very helpful.
+                </div>
+            </details>
+
+        </section>
+
+    </div>
 </div>
-
-<h2>Frequently Asked Questions</h2>
-
-<h3>How do AI recipe suggestions work?</h3>
-<p>PantryFusion analyzes your pantry and suggests authentic recipes from 195+ cuisines. The AI considers season, weather, your equipment, and dietary preferences.</p>
-
-<h3>How many recipes can I generate?</h3>
-<p>Free users: 5 AI recipes per day. PantryFusion Pro: unlimited.</p>
-
-<h3>How do I cancel my subscription?</h3>
-<p>iOS: <strong>Settings → Apple ID → Subscriptions</strong>. Android: Play Store → Profile → Payments and subscriptions.</p>
-
-<h3>Does the app work offline?</h3>
-<p>Saved recipes and your pantry are available offline. New AI recipes require an internet connection.</p>
-
-<h3>Which languages are supported?</h3>
-<p>16 languages: English, German, Spanish, French, Italian, Portuguese, Dutch, Polish, Russian, Turkish, Arabic, Japanese, Korean, Chinese (Simplified), Hindi, Indonesian.</p>
-
-<h3>Is my data shared?</h3>
-<p>No. See our <a href="https://mahirtas.github.io/pantryfusion-privacy/">Privacy Policy</a> for details.</p>
-
-<h3>I found a bug!</h3>
-<p>Please email <a href="mailto:mahir.tas.mt@gmail.com">mahir.tas.mt@gmail.com</a> with your device model, OS version, and a short description.</p>
-</section>
 
 <footer>
-© 2026 Mahir Tas · PantryFusion
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="https://mahirtas.github.io/" class="brand">
+                <span class="brand-icon">🍳</span>
+                <span>PantryFusion</span>
+            </a>
+            <p>Die smarte Rezept-App für alle, die mit Freude und ohne Verschwendung kochen wollen.</p>
+        </div>
+        <div>
+            <h4>App</h4>
+            <a href="https://apps.apple.com/app/pantryfusion/id6761635772">App Store</a>
+            <a href="https://mahirtas.github.io/">Startseite</a>
+        </div>
+        <div>
+            <h4>Rechtliches</h4>
+            <a href="./">Datenschutz</a>
+            <a href="support.html">Support</a>
+            <a href="delete-data.html">Daten löschen</a>
+            <a href="mailto:mahir.tas.mt@gmail.com">Kontakt</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 Mahir Tas · Made with 🍳 in Frankfurt am Main
+    </div>
 </footer>
+
+<script>
+(function() {
+    var KEY = 'pf-lang';
+    var DEFAULTS = {
+        'nav-home': { de: 'Startseite', en: 'Home' },
+        'nav-privacy': { de: 'Datenschutz', en: 'Privacy' }
+    };
+    var stored = (function(){ try { return localStorage.getItem(KEY); } catch(e) { return null; } })();
+    var browser = (navigator.language || 'en').toLowerCase().indexOf('de') === 0 ? 'de' : 'en';
+    setLang(stored || browser);
+    document.querySelectorAll('.lang-toggle button').forEach(function(btn) {
+        btn.addEventListener('click', function() { setLang(btn.dataset.lang); });
+    });
+    function setLang(lang) {
+        if (lang !== 'de' && lang !== 'en') lang = 'en';
+        try { localStorage.setItem(KEY, lang); } catch(e) {}
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[lang]').forEach(function(el) {
+            var l = el.getAttribute('lang');
+            if (l === 'de' || l === 'en') el.hidden = (l !== lang);
+        });
+        document.querySelectorAll('[data-i18n]').forEach(function(el) {
+            var key = el.getAttribute('data-i18n');
+            if (DEFAULTS[key] && DEFAULTS[key][lang]) el.textContent = DEFAULTS[key][lang];
+        });
+        document.querySelectorAll('.lang-toggle button').forEach(function(btn) {
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+    }
+})();
+</script>
 
 </body>
 </html>
